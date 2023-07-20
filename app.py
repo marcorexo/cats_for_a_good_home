@@ -5,8 +5,12 @@ from pages.home import create_home_content
 from components.parent_cards import card1,card2,card3
 import smtplib
 from email.message import EmailMessage
+import smtplib
+import mailtrap as mt
+
 
 app = dash.Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+
 
 # the style arguments for the sidebar. We use position:fixed and a fixed width
 SIDEBAR_STYLE = {
@@ -30,35 +34,48 @@ CONTENT_STYLE = {
 
 sidebar = html.Div(
     [
-        html.H3(
-            children=[
-                html.Span("Purr", style={"font-style": "italic", "font-family": "Arial"}),
-                "fectKittens"
-            ],
-            className="display-7"
+        html.Center(
+            [
+                html.Div(
+                    [
+                        html.Div(
+                                html.Img(src="assets/images/logo.jpg", alt="Logo", style={"width":"100px"}, className="logo")
+                        ),
+                        html.H3(
+                            children=[
+                                html.Span("Purr", style={"font-style": "italic", "font-family": "Arial", "font-weight":'300' }),
+                                "fect Kittens"
+                            ],
+                            className="display-7"
+                        ),
+                    ]
+                ),
+                html.P('Bangor, Gwynedd, UK'),
+            ]
         ),
         html.Hr(),
         html.P(
-            "A simple sidebar layout with navigation links", className="lead"
+            "Loving kittens that are trained to use the littertray and that have begun to eat solid foods.", 
+            className="lead",
+            style={"color":"gray"}
         ),
         dbc.Nav(
             [
-                dbc.NavLink("Home", href="/", active="exact"),
-                dbc.NavLink("Page 1", href="/page-1", active="exact"),
-                dbc.NavLink("Page 2", href="/page-2", active="exact"),
+                #dbc.NavLink("Home", href="/", active="exact"),
+                #dbc.NavLink("Page 1", href="/page-1", active="exact"),
+                #dbc.NavLink("Page 2", href="/page-2", active="exact"),
             ],
             vertical=True,
             pills=True,
         ),
+
+        html.Div(style={"height": "20%"}),
+
         html.Div(
-            children=[
-                html.H1("Email Form"),
-                html.Label("Subject:"),
-                dcc.Input(id="subject-input", type="text", placeholder="Enter email subject"),
-                html.Label("Message:"),
-                dcc.Textarea(id="message-input", placeholder="Enter email message"),
-                html.Button("Send Email", id="send-button", n_clicks=0),
-                html.Div(id="output")
+            [
+                html.P('We welcome your enquieries. Send us an email and we will respond asap. thank you x', 
+                    style={"color":"gray"}),
+                html.P(html.A('purrfectkittens01@gmail.com', href=f"mailto:{'purrfectkittens01@gmail.com'}?subject={'Enquiry about a kitten'}"), style={"color":"blue", "font-style":"italic"})
             ]
         )
         
@@ -67,9 +84,15 @@ sidebar = html.Div(
 )
 
 content = html.Div(id="page-content", style=CONTENT_STYLE)
-
 app.layout = html.Div([dcc.Location(id="url"), sidebar, content])
 
+   
+
+# Callback to handle the email sending process
+@app.callback(Output("output", "children"),
+              Input("send-button", "n_clicks"),
+              State("subject-input", "value"),
+              State("message-input", "value"))
 
 @app.callback(
     Output("page-content", "children"), 
