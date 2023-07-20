@@ -9,7 +9,8 @@ cards = []
 for i in range(1, 10):
     card = dbc.Card(
         [
-            dbc.CardImg(src=f"assets/images/{i}.jpg", top=True),
+            dbc.CardImg(src=f"https://github.com/marcorexo/cats_for_a_good_home/blob/main/assets/images/{i}.jpg?raw=true"),
+            #dbc.CardImg(src=f"assets/images/{i}.jpg", top=True),
             dbc.CardBody(
                 [
                     html.H3(breed[i-1]),
