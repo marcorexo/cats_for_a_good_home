@@ -36,7 +36,8 @@ sidebar = html.Div(
                 html.Div(
                     [
                         html.Div(
-                                html.Img(src="assets/images/logo.jpg", alt="Logo", style={"width":"100px"}, className="logo")
+                                html.Img(src=f"https://github.com/marcorexo/cats_for_a_good_home/blob/main/assets/images/logo.jpg?raw=true", alt="Logo", style={"width":"100px"}, className="logo"),
+                                #html.Img(src="assets/images/logo.jpg", alt="Logo", style={"width":"100px"}, className="logo")
                         ),
                         html.H3(
                             children=[
