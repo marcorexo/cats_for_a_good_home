@@ -2,11 +2,7 @@ import dash
 import dash_bootstrap_components as dbc
 from dash import Input, Output, dcc, html,State
 from pages.home import create_home_content
-from components.parent_cards import card1,card2,card3
-import smtplib
-from email.message import EmailMessage
-import smtplib
-import mailtrap as mt
+#from components.parent_cards import card1,card2,card3
 
 
 app = dash.Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
