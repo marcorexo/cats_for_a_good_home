@@ -18,7 +18,7 @@ To run the website locally on your machine, follow these steps:
 1. Clone the repository to your local environment.
 
 ```bash
-git clone https://github.com/your-username/kittens-for-sale.git
+git clone https://github.com/marcorexo/kittens-for-sale.git
 ```
 
 2. Set up a virtual environment (optional but recommended).
